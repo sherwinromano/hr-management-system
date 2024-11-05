@@ -1,13 +1,12 @@
 import {
   HTMLInputTypeAttribute,
-  useEffect,
   useState,
   forwardRef,
   InputHTMLAttributes,
   Ref,
 } from "react";
-import Hidden from "./Hidden";
-import Visible from "./Visible";
+import Hidden from "@/components/authentication/icons/Hidden";
+import Visible from "@/components/authentication/icons/Visible";
 
 type InputProps = {
   htmlFor: string;
@@ -25,7 +24,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
         >
           {label}
         </label>
-        {label === "Password" ? (
+        {htmlFor === "password" ? (
           <PasswordInput ref={ref} {...props} />
         ) : (
           <input
@@ -47,10 +46,6 @@ const PasswordInput = forwardRef<
 >((props, ref) => {
   const [isVisible, setIsVisible] = useState<boolean>(false);
 
-  useEffect(() => {
-    setIsVisible(false);
-  }, []);
-
   return (
     <div className="flex justify-between gap-4">
       <input
@@ -59,12 +54,12 @@ const PasswordInput = forwardRef<
         className="outline-none text-base w-full bg-transparent"
         type={isVisible ? "text" : "password"}
       />
-      <button
+      <span
         onClick={() => setIsVisible((prev) => !prev)}
         className="cursor-pointer"
       >
         {isVisible ? <Visible style="size-5" /> : <Hidden style="size-5" />}
-      </button>
+      </span>
     </div>
   );
 });

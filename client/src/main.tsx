@@ -7,14 +7,24 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import "./index.css";
-import Login from "./Login";
-import Layout from "./layout";
+import Layout from "@/layout";
+import AuthLayout from "@/layouts/Authentication";
+import Login from "@/pages/authentication/Login";
+import ForgotPassword from "@/pages/authentication/ForgotPassword";
+import VerifyOTP from "@/pages/authentication/VerifyOTP";
+import Register from "@/pages/authentication/Register";
+import ChangePassword from "@/pages/authentication/ChangePassword";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
-      <Route path="/login" element={<Login />} />
-      <Route path="/register" element={<h2>Register Page</h2>} />
+      <Route path="auth" element={<AuthLayout />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+        <Route path="forgot-password" element={<ForgotPassword />} />
+        <Route path="verify-otp" element={<VerifyOTP />} />
+        <Route path="change-password" element={<ChangePassword />} />
+      </Route>
     </Route>
   )
 );

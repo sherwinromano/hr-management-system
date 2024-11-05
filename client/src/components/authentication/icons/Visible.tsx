@@ -1,4 +1,4 @@
-// Icon component for toggle password
+// Icon component for showing password
 
 type Style = {
   style: string;
